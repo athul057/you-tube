@@ -9,7 +9,6 @@ const Body = () => {
   <div className='flex'>
    <SideBar />
    <Outlet />
-
   </div>
  )
 }
