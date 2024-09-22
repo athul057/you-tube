@@ -59,6 +59,12 @@ const SideBar = () => {
     <li>Videos</li>
     <li>Live</li>
    </ul>
+   <ul>
+    <li>Home</li>
+    <li>Shorts</li>
+    <li>Videos</li>
+    <li>Live</li>
+   </ul>
   </div>
  )
 }
