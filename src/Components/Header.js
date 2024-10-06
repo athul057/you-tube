@@ -4,6 +4,7 @@ import { toggleMenu } from './utils/appSlice';
 import { SUGGESTION_API } from './Constants';
 
 const Header = () => {
+ const [showSuggestion, setShowSuggestion] = useState(false);
  const [searchQuery, setSearchQuery] = useState("");
  const [suggestionData, setSuggestionData] = useState([]);
 
@@ -19,11 +20,7 @@ const Header = () => {
  };
 
  useEffect(() => {
-  if (searchQuery) {
-   searchSuggestion();
-  } else {
-   setSuggestionData([]);
-  }
+  searchSuggestion();
  }, [searchQuery]);
 
  return (
@@ -53,6 +50,9 @@ const Header = () => {
        value={searchQuery}
        onChange={(e) => setSearchQuery(e.target.value)}
        placeholder='Search'
+       onFocus={() => setShowSuggestion(true)}
+       onBlur={() => setShowSuggestion(false)}
+
       />
       <button className='py-1 px-3 border border-gray-200 rounded-r-full bg-gray-100'>
        Search
@@ -60,12 +60,12 @@ const Header = () => {
      </div>
 
      {/* Suggestion Dropdown */}
-     {suggestionData.length > 0 && (
+     {showSuggestion && suggestionData.length > 0 && (
       <div className='absolute top-10 left-0 bg-white w-6/12 shadow-lg rounded-lg'>
        <ul>
         {suggestionData.map((suggestion, index) => (
          <li key={index} className='p-2 hover:bg-gray-100 cursor-pointer'>
-          {suggestion}
+          🔍 {suggestion}
          </li>
         ))}
        </ul>
